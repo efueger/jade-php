@@ -172,7 +172,7 @@ abstract class MixinVisitor extends CodeVisitor
     /**
      * @param Nodes\Mixin $mixin
      */
-    protected function visitMixinDeclaration(Mixin $mixin, $name, $attributes)
+    protected function visitMixinDeclaration(Mixin $mixin, $name)
     {
         $arguments = $mixin->arguments;
         $block = $mixin->block;
@@ -211,12 +211,8 @@ abstract class MixinVisitor extends CodeVisitor
         }
         $attributes = static::decodeAttributes($mixin->attributes);
 
-        if ($mixin->call) {
-            $this->visitMixinCall($mixin, $name, $blockName, $attributes);
-
-            return;
-        }
-
-        $this->visitMixinDeclaration($mixin, $name, $attributes);
+        $mixin->call
+            ? $this->visitMixinCall($mixin, $name, $blockName, $attributes)
+            : $this->visitMixinDeclaration($mixin, $name);
     }
 }
