@@ -12,15 +12,8 @@ engines:
     enabled: true
   phpmd:
     enabled: true
-    checks:
-      Controversial/CamelCaseMethodName:
-        enabled: true
-        exclude_paths:
-        - src/Jade/Stream/Template.php
-      UnusedFormalParameter:
-        enabled: true
-        exclude_paths:
-        - src/Jade/Stream/Template.php
+    exclude_paths:
+    - src/Jade/Stream/Template.php
 ratings:
   paths:
   - "**.inc"
